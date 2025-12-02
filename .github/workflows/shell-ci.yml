@@ -13,7 +13,7 @@ jobs:
         run: chmod +x scripts/*.sh
 
       - name: Run Hello Script
-        run: ./script/hello.sh
+        run: ./scripts/hello.sh
 
       - name: Run tests
         run: ./scripts/test.sh
