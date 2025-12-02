@@ -1,0 +1,50 @@
+name: Parallel & Matrix CI Demo
+
+on: [push]
+
+jobs:
+  # Parallel Job 1
+  job1:
+    name: "Parallel Job 1"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run hello script
+        run: ./scripts/hello.sh
+
+  # Parallel Job 2
+  job2:
+    name: "Parallel Job 2"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run test script
+        run: ./scripts/test.sh | tee test.log
+      - name: Upload test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-log
+          path: test.log
+
+  # Matrix Job
+  matrix-job:
+    name: Run in environment ${{ matrix.env }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [dev, staging, prod]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Print environment
+        run: echo "Running matrix job in ${{ matrix.env }}"
+      - name: Run test script
+        run: ./scripts/test.sh | tee matrix-${{ matrix.env }}.log
+      - name: Upload matrix log
+        uses: actions/upload-artifact@v4
+        with:
+          name: matrix-${{ matrix.env }}-log
+          path: matrix-${{ matrix.env }}.log
+
