@@ -1,4 +1,4 @@
-name: Parallel Jobs Demo
+name: Matrix Demo
 
 on: [push]
 
