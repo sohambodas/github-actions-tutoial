@@ -1,0 +1,17 @@
+name: Parallel Jobs Demo
+
+on: [push]
+
+jobs:
+  matrix-job:
+    name: matrix-job in ${{matrix.env}}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [dev, Staging, prod]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Print environment
+        run: echo "Running in environment ${{ matrix.env }}"
+          
