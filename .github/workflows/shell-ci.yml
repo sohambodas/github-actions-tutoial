@@ -1,0 +1,26 @@
+name: Shell CI
+
+on: [push,pull request]
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Run Hello Script
+        run: ./script/hello.sh
+
+      - name: Run tests
+        run: ./scripts/test.sh
+
+      - name: Upload test output
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-log
+          path: scripts
+
