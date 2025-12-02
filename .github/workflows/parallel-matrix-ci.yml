@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run hello script
-        run: ./scripts/hello.sh
+        run: bash ./scripts/hello.sh
 
   # Parallel Job 2
   job2:
