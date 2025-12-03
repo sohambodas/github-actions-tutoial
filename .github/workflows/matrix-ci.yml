@@ -1,7 +1,7 @@
 #matrix-c
 name: Matrix Demo
 
-on: [push]
+on: workflow_call
 
 jobs:
   matrix-job:
