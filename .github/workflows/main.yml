@@ -12,6 +12,6 @@ jobs:
     strategy:
       matrix:
         env: [dev, staging, prod]
-    uses: ./.github/workflows/matrix-ci.yml
+    uses: ./.github/workflows/reusable-matrix-ci.yml
     with:
       env: ${{matrix.env}}
