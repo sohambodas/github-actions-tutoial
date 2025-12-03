@@ -10,7 +10,7 @@ on:
 
 jobs:
   matrix-job:
-    name: matrix-job in ${{input.env}}
+    name: matrix-job in ${{ input.env }}
     runs-on: ubuntu-latest
     #strategy:
     #  matrix:
@@ -23,5 +23,5 @@ jobs:
       - name: Upload log
         uses: actions/artifact@v4
         with:
-          name: "matrix-${{input.log}}-log"
-          path: "matrix-${{input.log}}-log"
+          name: "matrix-${{ input.env }}-log"
+          path: "matrix-${{ input.env }}-log"

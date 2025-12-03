@@ -1,6 +1,6 @@
 name: Parallel Jobs Demo
 
-on: [push]
+on: [workflow_call]
 
 jobs:
   job1:

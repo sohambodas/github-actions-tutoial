@@ -1,6 +1,6 @@
 name: Parallel & Matrix CI Demo
 
-on: [push]
+on: workflow_call
 
 jobs:
   # Parallel Job 1
