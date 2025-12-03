@@ -10,7 +10,7 @@ on:
 
 jobs:
   matrix-job:
-    name: matrix-job in ${{ input.env }}
+    name: matrix-job in ${{ inputs.env }}
     runs-on: ubuntu-latest
     #strategy:
     #  matrix:
@@ -20,8 +20,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Print environment
         run: echo "Running in environment ${{ input.env }}"
+      - name: Create log file
+        run: echo "Log for ${{ inputs.env }}" > "matrix-${{ inputs.env }}.log"
       - name: Upload log
-        uses: actions/artifact@v4
+        uses: actions/upload-artifact@v4
         with:
-          name: "matrix-${{ input.env }}-log"
-          path: "matrix-${{ input.env }}-log"
+          name: "matrix-${{ inputs.env }}-log"
+          path: "matrix-${{ inputs.env }}.log"
