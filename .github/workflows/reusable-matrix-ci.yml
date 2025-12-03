@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Print environment
-        run: echo "Running in environment ${{ input.env }}"
+        run: echo "Running in environment ${{ inputs.env }}"
       - name: Create log file
         run: echo "Log for ${{ inputs.env }}" > "matrix-${{ inputs.env }}.log"
       - name: Upload log
