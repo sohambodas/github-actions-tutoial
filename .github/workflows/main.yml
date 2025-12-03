@@ -1,0 +1,17 @@
+# .github/workflows/main.yml
+name: Main Workflow
+
+on: [push]
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable-ci.yml
+    with:
+      environment: staging
+  call-reusable-matrix:
+    strategy:
+      matrix:
+        env: [dev, staging, prod]
+    uses: ./.github/workflows/matrix-ci.yml
+    with:
+      env: ${{matrix.env}}

@@ -1,0 +1,27 @@
+#reusable matrix-ci
+name: Matrix Demo
+
+on: 
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+
+jobs:
+  matrix-job:
+    name: matrix-job in ${{input.env}}
+    runs-on: ubuntu-latest
+    #strategy:
+    #  matrix:
+    #    env: [dev, Staging, prod]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Print environment
+        run: echo "Running in environment ${{ input.env }}"
+      - name: Upload log
+        uses: actions/artifact@v4
+        with:
+          name: "matrix-${{input.log}}-log"
+          path: "matrix-${{input.log}}-log"
